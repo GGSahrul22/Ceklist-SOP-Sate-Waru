@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17365d">
+  <title>Form Pemeriksaan Operasional Restoran</title>
+  <style>
+    :root{--navy:#17365d;--blue:#2f5597;--bg:#f3f6fb;--line:#dce3ee;--text:#182230;--muted:#64748b;--green:#dcfce7;--red:#fee2e2;--amber:#fef3c7}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+    header{background:linear-gradient(120deg,#17365d,#2f5597);color:#fff;padding:28px 18px}
+    .wrap{max-width:1180px;margin:auto;padding:0 16px}.head{display:flex;justify-content:space-between;align-items:center;gap:18px}.head h1{font-size:clamp(1.4rem,3vw,2rem);margin:0 0 6px}.head p{margin:0;color:#dbeafe}
+    .pill{background:#ffffff20;border:1px solid #ffffff55;padding:7px 12px;border-radius:999px;font-size:.85rem;white-space:nowrap}
+    main{padding:24px 0 44px}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 5px 20px #102a4308}
+    h2{font-size:1.15rem;margin:0 0 16px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:.9rem;font-weight:650}.field input,.field select,.field textarea{width:100%;border:1px solid #cbd5e1;border-radius:9px;padding:10px 11px;font:inherit;background:#fff;color:var(--text)}input:focus,select:focus,textarea:focus{outline:3px solid #93c5fd70;border-color:#3b82f6}
+    .toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px}.toolbar .field{min-width:230px;flex:1}
+    button,.button{border:0;border-radius:9px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;display:inline-flex;justify-content:center;align-items:center;gap:7px;text-decoration:none}
+    .primary{background:var(--navy);color:#fff}.secondary{background:#e8eef8;color:var(--navy)}.outline{background:#fff;border:1px solid var(--line);color:var(--text)}.danger{background:#fee2e2;color:#991b1b}button:hover,.button:hover{filter:brightness(.97)}button:disabled{opacity:.5;cursor:not-allowed}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0 18px}.stat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.stat span{display:block;color:var(--muted);font-size:.83rem}.stat strong{font-size:1.45rem}
+    .progress{height:8px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin:8px 0 4px}.progress div{height:100%;width:0;background:#2563eb;transition:width .2s}
+    .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#edf2fa;color:#263d61;font-size:.85rem}tbody tr:last-child td{border-bottom:0}.no{width:44px;color:var(--muted)}.item{min-width:260px}.status{min-width:145px}.status select{width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;font:inherit}.note{min-width:180px}.note input{width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:8px;font:inherit}.status-ok{background:var(--green)}.status-bad{background:var(--red)}.status-na{background:var(--amber)}
+    .foot-actions{display:flex;gap:10px;flex-wrap:wrap}.hint{font-size:.88rem;color:var(--muted)}.message{display:none;margin-top:12px;padding:10px 12px;border-radius:9px;background:#dcfce7;color:#166534}.message.show{display:block}.required{color:#b91c1c}footer{padding:0 0 24px;text-align:center;color:var(--muted);font-size:.82rem}
+    @media(max-width:760px){.head{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:15px}.toolbar .field{min-width:100%}}
+    @media(max-width:480px){.grid{grid-template-columns:1fr}.foot-actions button{width:100%}.pill{white-space:normal}}
+    @media print{body{background:#fff}header{padding:12px;background:#fff;color:#000}.head p{color:#333}.pill,.toolbar button,.foot-actions,footer{display:none!important}.panel{box-shadow:none;break-inside:avoid}.wrap{max-width:none}.table-wrap{overflow:visible}table{min-width:0;font-size:10px}th,td{padding:6px}.status select,.note input{border:0;appearance:none;padding:0}.grid{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+<header><div class="wrap head"><div><h1>Form Pemeriksaan Operasional Restoran</h1><p>Checklist SOP harian untuk kontrol kualitas dan kepatuhan operasional.</p></div><div class="pill">8 posisi · 80 checklist</div></div></header>
+<main class="wrap">
+  <section class="panel">
+    <h2>1. Informasi pemeriksaan</h2>
+    <div class="grid">
+      <div class="field"><label for="date">Tanggal <span class="required">*</span></label><input id="date" type="date" required></div>
+      <div class="field"><label for="shift">Shift <span class="required">*</span></label><select id="shift"><option value="Pagi">Pagi</option><option value="Siang">Siang</option><option value="Malam" selected>Malam</option></select></div>
+      <div class="field"><label for="position">Posisi yang diperiksa <span class="required">*</span></label><select id="position"></select></div>
+      <div class="field"><label for="staff">Nama petugas</label><input id="staff" placeholder="Nama karyawan"></div>
+      <div class="field"><label for="inspector">Nama pemeriksa / supervisor</label><input id="inspector" placeholder="Nama Head Floor atau supervisor"></div>
+      <div class="field"><label for="start">Jam mulai</label><input id="start" type="time"></div>
+      <div class="field"><label for="end">Jam selesai</label><input id="end" type="time"></div>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="toolbar">
+      <div style="flex:1;min-width:220px"><h2 style="margin:0">2. Checklist SOP</h2><div class="hint" id="positionDescription">Pilih posisi untuk melihat daftar checklist.</div></div>
+      <div class="field"><label for="filter">Filter status</label><select id="filter"><option value="all">Semua checklist</option><option value="blank">Belum diperiksa</option><option value="Tidak sesuai">Tidak sesuai</option><option value="OK">OK</option><option value="N/A">N/A</option></select></div>
+      <button class="secondary" id="resetStatus" type="button">Kosongkan status</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><span>Total checklist</span><strong id="total">10</strong></div>
+      <div class="stat"><span>OK</span><strong id="okCount">0</strong></div>
+      <div class="stat"><span>Tidak sesuai</span><strong id="badCount">0</strong></div>
+      <div class="stat"><span>Belum diperiksa</span><strong id="blankCount">10</strong></div>
+    </div>
+    <div class="progress"><div id="progressBar"></div></div><div class="hint" id="progressText">0 dari 10 checklist diperiksa</div>
+    <div class="table-wrap" style="margin-top:14px"><table><thead><tr><th class="no">No.</th><th>Checklist SOP</th><th>Status</th><th>Keterangan / Temuan</th><th>Tindakan perbaikan</th></tr></thead><tbody id="checklistBody"></tbody></table></div>
+    <div class="field" style="margin-top:16px"><label for="generalNotes">Catatan umum / tindak lanjut</label><textarea id="generalNotes" rows="3" placeholder="Tuliskan temuan umum, penanggung jawab, dan batas waktu perbaikan..."></textarea></div>
+  </section>
+  <section class="panel">
+    <h2>3. Simpan dan ekspor</h2>
+    <div class="foot-actions">
+      <button class="primary" id="saveBtn" type="button">Simpan pemeriksaan</button>
+      <button class="secondary" id="excelBtn" type="button">⬇ Download Excel (.xlsx)</button>
+      <button class="outline" id="csvBtn" type="button">Download CSV</button>
+      <button class="outline" id="printBtn" type="button">Cetak / Simpan PDF</button>
+      <button class="outline" id="historyBtn" type="button">Lihat riwayat tersimpan</button>
+      <button class="danger" id="clearHistoryBtn" type="button">Hapus riwayat lokal</button>
+    </div>
+    <div class="hint" style="margin-top:12px">Data tersimpan di browser/perangkat ini. Untuk menggunakan data di perangkat lain, download Excel/CSV dan pindahkan filenya. File Excel dibuat menggunakan pustaka SheetJS dari CDN, sehingga koneksi internet diperlukan untuk ekspor .xlsx.</div>
+    <div class="message" id="message" role="status" aria-live="polite"></div>
+    <div id="history" style="display:none;margin-top:18px"></div>
+  </section>
+</main>
+<footer class="wrap">Template operasional — sesuaikan standar suhu, sanitasi, keselamatan api, dan prosedur kerja dengan kebijakan restoran.</footer>
+<script>
+const SOP = {
+ "Kasir":[
+ "Datang tepat waktu dan menggunakan seragam lengkap serta rapi.",
+ "Memastikan mesin kasir/POS, printer struk, dan perangkat pembayaran berfungsi.",
+ "Menghitung uang modal awal dan mencatat saldo awal kas.",
+ "Memastikan daftar menu, harga, promo, dan pajak sesuai ketentuan.",
+ "Memasukkan pesanan pelanggan secara akurat ke sistem.",
+ "Mengonfirmasi nominal tagihan sebelum menerima pembayaran.",
+ "Memastikan pembayaran tunai, QRIS, kartu, atau transfer berhasil.",
+ "Memberikan struk dan uang kembalian sesuai nominal.",
+ "Mencatat pembatalan, diskon, refund, dan pengeluaran kas sesuai otorisasi.",
+ "Melakukan tutup kas, mencocokkan transaksi dengan uang fisik, dan melaporkan selisih."
+ ],
+ "Waiter/Runner":[
+ "Hadir tepat waktu, memakai seragam, dan menjaga kebersihan diri.",
+ "Memastikan meja, kursi, menu, dan perlengkapan makan bersih.",
+ "Memeriksa kesiapan area pelayanan sebelum restoran dibuka.",
+ "Menyambut pelanggan dengan sopan dan mengarahkan ke meja.",
+ "Menjelaskan menu, promo, dan ketersediaan produk secara benar.",
+ "Mencatat pesanan, jumlah, tingkat kematangan, dan permintaan khusus dengan teliti.",
+ "Memasukkan atau meneruskan pesanan ke kasir/POS dan dapur tanpa keterlambatan.",
+ "Memeriksa kesesuaian makanan dan minuman sebelum disajikan.",
+ "Mengantar pesanan ke meja yang benar serta melakukan pengecekan kepuasan pelanggan.",
+ "Membersihkan meja setelah pelanggan selesai dan mengembalikan area ke kondisi siap pakai."
+ ],
+ "Head Floor":[
+ "Memeriksa kehadiran, ketepatan waktu, seragam, dan kesiapan seluruh staf floor.",
+ "Memimpin briefing sebelum operasional mengenai target, menu, promo, dan pembagian tugas.",
+ "Memeriksa kebersihan, kerapian, dan kesiapan seluruh area pelanggan.",
+ "Memastikan meja, alat makan, tisu, saus, dan perlengkapan pelayanan tersedia.",
+ "Mengatur pembagian area kerja waiter/runner sesuai kebutuhan operasional.",
+ "Memantau kecepatan pelayanan dan waktu tunggu pesanan.",
+ "Mengoordinasikan komunikasi antara floor, kasir, dapur, dan bar.",
+ "Menangani keluhan pelanggan secara profesional dan melakukan eskalasi bila diperlukan.",
+ "Memantau kepatuhan terhadap SOP, kebersihan, dan standar pelayanan selama shift.",
+ "Membuat laporan akhir shift terkait penjualan operasional, keluhan, kendala, dan tindak lanjut."
+ ],
+ "Chef":[
+ "Menggunakan seragam dapur, penutup kepala, dan perlengkapan kerja yang sesuai.",
+ "Memastikan area masak, meja kerja, dan peralatan bersih serta siap digunakan.",
+ "Memeriksa kualitas, kesegaran, tanggal kedaluwarsa, dan kondisi bahan baku.",
+ "Memastikan penyimpanan bahan sesuai jenis, suhu, dan prinsip FIFO/FEFO.",
+ "Memastikan bahan dan peralatan mentah terpisah dari makanan matang untuk mencegah kontaminasi silang.",
+ "Menyiapkan bahan sesuai resep, takaran, dan standar porsi.",
+ "Memasak sesuai urutan tiket pesanan dan standar waktu serta suhu yang ditetapkan.",
+ "Memeriksa rasa, aroma, tekstur, kematangan, tampilan, dan ukuran porsi sebelum makanan keluar.",
+ "Mengawasi kebersihan staf, kondisi alat, serta pencatatan stok dan bahan yang terbuang.",
+ "Mematikan peralatan sesuai prosedur, menyimpan bahan dengan benar, dan memastikan dapur bersih setelah tutup."
+ ],
+ "Helper":[
+ "Menggunakan seragam kerja, celemek, dan penutup kepala sesuai ketentuan.",
+ "Mencuci tangan sebelum menangani bahan dan setelah aktivitas yang berisiko mencemari bahan.",
+ "Membersihkan dan menyiapkan meja kerja, talenan, pisau, serta wadah bahan.",
+ "Memeriksa bahan baku berdasarkan jumlah, kesegaran, dan kondisi fisiknya.",
+ "Mencuci bahan pangan sesuai prosedur dan menggunakan air layak untuk pengolahan pangan.",
+ "Mengupas, memotong, menimbang, dan memorsikan bahan sesuai instruksi chef.",
+ "Memberi label dan menyimpan bahan yang telah disiapkan sesuai jenis serta suhu penyimpanan.",
+ "Mengisi ulang bahan persiapan sebelum stok habis dan memberi tahu chef jika stok menipis.",
+ "Memisahkan sampah, sisa bahan, dan bahan yang tidak layak digunakan sesuai prosedur.",
+ "Membersihkan area persiapan dan mengembalikan peralatan ke tempatnya setelah operasional."
+ ],
+ "Steward":[
+ "Menggunakan apron, alas kaki antiselip, dan sarung tangan jika diperlukan.",
+ "Memeriksa kondisi wastafel, saluran air, tempat sampah, dan area pencucian.",
+ "Memisahkan peralatan berdasarkan jenis dan membuang sisa makanan sebelum dicuci.",
+ "Mencuci peralatan menggunakan deterjen dan metode yang sesuai.",
+ "Membilas peralatan hingga tidak terdapat sisa deterjen.",
+ "Melakukan sanitasi peralatan sesuai prosedur dan konsentrasi bahan sanitasi yang ditentukan.",
+ "Mengeringkan peralatan dengan cara higienis dan menyimpannya di tempat bersih.",
+ "Memisahkan peralatan pecah, retak, berkarat, atau rusak agar tidak digunakan kembali.",
+ "Membersihkan lantai, saluran pembuangan, dan area cuci serta mengelola sampah secara berkala.",
+ "Memastikan area pencucian bersih, bahan kimia tersimpan aman, dan air serta peralatan diamankan sesuai prosedur."
+ ],
+ "Bakaran Sate":[
+ "Menggunakan seragam kerja, celemek, dan alat pelindung panas yang sesuai.",
+ "Memeriksa kebersihan panggangan, penjepit, kipas, dan peralatan bakar.",
+ "Memeriksa kondisi sate, bahan marinasi, dan bumbu sebelum digunakan.",
+ "Menyimpan sate mentah pada suhu aman dan terpisah dari sate matang.",
+ "Menyiapkan arang atau sumber panas sesuai prosedur keselamatan dan memastikan ventilasi memadai.",
+ "Memastikan pesanan, jenis sate, jumlah tusuk, dan permintaan pelanggan sesuai tiket.",
+ "Membakar sate dengan pengaturan panas dan pembalikan yang sesuai agar matang merata.",
+ "Memastikan sate mencapai suhu kematangan aman sesuai jenis bahan; unggas umumnya 74°C pada bagian terdalam.",
+ "Menggunakan alat bersih untuk sate matang, memberi bumbu dan garnish sesuai standar, lalu menyerahkan pesanan dengan benar.",
+ "Memadamkan api sesuai prosedur, memastikan bara aman, membersihkan panggangan, dan mencatat sisa bahan."
+ ],
+ "Bar":[
+ "Menggunakan seragam bersih dan menjaga kebersihan tangan sebelum meracik minuman.",
+ "Membersihkan meja bar, blender, shaker, mesin kopi, dan peralatan minuman.",
+ "Memeriksa ketersediaan bahan seperti es, air minum, sirup, susu, kopi, teh, dan garnish.",
+ "Memastikan bahan minuman layak digunakan, berlabel, dan disimpan pada suhu yang sesuai.",
+ "Memastikan air dan es yang digunakan aman untuk konsumsi.",
+ "Membaca tiket pesanan dan mengonfirmasi jenis, ukuran, tingkat gula, es, serta permintaan khusus.",
+ "Meracik minuman sesuai resep baku, takaran, dan standar penyajian.",
+ "Memeriksa rasa, volume, kebersihan gelas, garnish, dan kesesuaian minuman dengan pesanan.",
+ "Mengirimkan minuman sesuai nomor meja atau tiket dan memperbarui informasi stok bahan yang menipis.",
+ "Membersihkan peralatan dan area bar, menyimpan bahan dengan benar, serta mencatat stok akhir dan bahan terbuang."
+ ]
+};
+const $ = id => document.getElementById(id);
+const STORAGE_KEY = "restoranSopChecklistV1";
+let currentRows = [];
+function safe(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function showMessage(t){$("message").textContent=t;$("message").classList.add("show");setTimeout(()=>$("message").classList.remove("show"),3500);}
+function dateToday(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;}
+function makeOptions(){Object.keys(SOP).forEach(p=>{const o=document.createElement("option");o.value=p;o.textContent=p;$("position").appendChild(o)});$("date").value=dateToday();}
+function renderChecklist(preserve=true){
+ const pos=$("position").value, old=preserve?readRows():[];
+ currentRows=SOP[pos].map((text,i)=>({text,status:old[i]?.text===text?old[i].status:"",finding:old[i]?.text===text?old[i].finding:"",action:old[i]?.text===text?old[i].action:""}));
+ $("positionDescription").textContent=`${pos} · ${SOP[pos].length} poin pemeriksaan`;
+ const body=$("checklistBody");body.innerHTML="";
+ currentRows.forEach((r,i)=>{
+  const tr=document.createElement("tr");tr.dataset.index=i;
+  tr.innerHTML=`<td class="no">${i+1}</td><td class="item">${safe(r.text)}</td><td class="status"><select aria-label="Status checklist ${i+1}" data-field="status"><option value="">Pilih status</option><option>OK</option><option>Tidak sesuai</option><option>N/A</option></select></td><td class="note"><input data-field="finding" aria-label="Keterangan checklist ${i+1}" placeholder="Temuan / keterangan"></td><td class="note"><input data-field="action" aria-label="Tindakan checklist ${i+1}" placeholder="Tindakan perbaikan"></td>`;
+  body.appendChild(tr);const sel=tr.querySelector('[data-field="status"]');sel.value=r.status;tr.querySelector('[data-field="finding"]').value=r.finding;tr.querySelector('[data-field="action"]').value=r.action;
+  tr.querySelectorAll("select,input").forEach(el=>el.addEventListener("input",()=>{const idx=Number(tr.dataset.index);currentRows[idx][el.dataset.field]=el.value;paintStatus(tr,el.value);updateStats();}));
+  paintStatus(tr,r.status);
+ });
+ applyFilter();updateStats();
+}
+function readRows(){const trs=[...$("checklistBody").querySelectorAll("tr")];return trs.map((tr,i)=>({text:currentRows[i]?.text||"",status:tr.querySelector('[data-field="status"]')?.value||"",finding:tr.querySelector('[data-field="finding"]')?.value||"",action:tr.querySelector('[data-field="action"]')?.value||""}));}
+function paintStatus(tr,s){tr.classList.remove("status-ok","status-bad","status-na");if(s==="OK")tr.classList.add("status-ok");if(s==="Tidak sesuai")tr.classList.add("status-bad");if(s==="N/A")tr.classList.add("status-na");}
+function updateStats(){const rows=readRows(),ok=rows.filter(r=>r.status==="OK").length,bad=rows.filter(r=>r.status==="Tidak sesuai").length,na=rows.filter(r=>r.status==="N/A").length,done=ok+bad+na; $("total").textContent=rows.length;$("okCount").textContent=ok;$("badCount").textContent=bad;$("blankCount").textContent=rows.length-done;$("progressBar").style.width=(done/Math.max(rows.length,1)*100)+"%";$("progressText").textContent=`${done} dari ${rows.length} checklist diperiksa (${Math.round(done/Math.max(rows.length,1)*100)}%) · N/A: ${na}`;applyFilter();}
+function applyFilter(){const f=$("filter").value;[...$("checklistBody").querySelectorAll("tr")].forEach(tr=>{const s=tr.querySelector("select").value;tr.hidden=f==="all"?false:f==="blank"?!!s:s!==f;});}
+function getRecord(){return {date:$("date").value,shift:$("shift").value,position:$("position").value,staff:$("staff").value.trim(),inspector:$("inspector").value.trim(),start:$("start").value,end:$("end").value,rows:readRows(),generalNotes:$("generalNotes").value.trim(),savedAt:new Date().toISOString()};}
+function saveRecord(){if(!$("date").value){showMessage("Tanggal wajib diisi.");$("date").focus();return null;}const rec=getRecord();let history=[];try{history=JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]")}catch(e){}history.unshift(rec);try{localStorage.setItem(STORAGE_KEY,JSON.stringify(history.slice(0,200)));showMessage("Pemeriksaan disimpan di browser ini.");}catch(e){showMessage("Penyimpanan browser penuh atau tidak tersedia. Silakan download Excel.");}return rec;}
+function recordsToAOA(rec){const a=[["REKAP SOP CHECKLIST RESTORAN"],["Tanggal",rec.date,"Shift",rec.shift,"Posisi",rec.position],["Nama petugas",rec.staff,"Pemeriksa",rec.inspector,"Jam mulai",rec.start,"Jam selesai",rec.end],[],["No","Checklist SOP","Status","Keterangan / Temuan","Tindakan perbaikan"]];rec.rows.forEach((r,i)=>a.push([i+1,r.text,r.status,r.finding,r.action]));a.push([],["Catatan umum / tindak lanjut",rec.generalNotes],[],["OK",rec.rows.filter(r=>r.status==="OK").length,"Tidak sesuai",rec.rows.filter(r=>r.status==="Tidak sesuai").length,"N/A",rec.rows.filter(r=>r.status==="N/A").length,"Belum diperiksa",rec.rows.filter(r=>!r.status).length]);return a;}
+function filename(rec,ext){return `Checklist_SOP_${rec.position.replace(/[^a-z0-9]+/gi,"_")}_${rec.date||dateToday()}_${rec.shift}.${ext}`;}
+function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);}
+function exportExcel(){const rec=getRecord();if(!rec.date){showMessage("Tanggal wajib diisi.");return;}if(typeof XLSX==="undefined"){showMessage("Pustaka Excel belum termuat. Periksa koneksi internet, lalu muat ulang halaman.");return;}const wb=XLSX.utils.book_new(),ws=XLSX.utils.aoa_to_sheet(recordsToAOA(rec));ws["!cols"]=[{wch:7},{wch:75},{wch:18},{wch:40},{wch:40}];ws["!merges"]=[{s:{r:0,c:0},e:{r:0,c:4}}];ws["!freeze"]={xSplit:0,ySplit:5};XLSX.utils.book_append_sheet(wb,ws,"Checklist");XLSX.writeFile(wb,filename(rec,"xlsx"));showMessage("File Excel sedang diunduh.");}
+function exportCSV(){const rec=getRecord();const csv=recordsToAOA(rec).map(row=>row.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\r\n");downloadBlob(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8;"}),filename(rec,"csv"));showMessage("File CSV berhasil dibuat.");}
+function showHistory(){let history=[];try{history=JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]")}catch(e){}const box=$("history");box.style.display="block";if(!history.length){box.innerHTML='<p class="hint">Belum ada pemeriksaan yang tersimpan di browser ini.</p>';return;}box.innerHTML='<h3>Riwayat tersimpan (maksimal 200 catatan)</h3><div class="table-wrap"><table style="min-width:600px"><thead><tr><th>Tanggal</th><th>Shift</th><th>Posisi</th><th>Petugas</th><th>OK</th><th>Tidak sesuai</th><th>Aksi</th></tr></thead><tbody>'+history.map((r,i)=>`<tr><td>${safe(r.date)}</td><td>${safe(r.shift)}</td><td>${safe(r.position)}</td><td>${safe(r.staff)}</td><td>${r.rows.filter(x=>x.status==="OK").length}</td><td>${r.rows.filter(x=>x.status==="Tidak sesuai").length}</td><td><button class="secondary" data-load="${i}" type="button">Buka</button></td></tr>`).join("")+'</tbody></table></div>';
+ box.querySelectorAll("[data-load]").forEach(b=>b.addEventListener("click",()=>loadRecord(history[Number(b.dataset.load)])));
+}
+function loadRecord(r){$("date").value=r.date||dateToday();$("shift").value=r.shift||"Pagi";$("position").value=r.position;$("staff").value=r.staff||"";$("inspector").value=r.inspector||"";$("start").value=r.start||"";$("end").value=r.end||"";$("generalNotes").value=r.generalNotes||"";renderChecklist(false);currentRows=r.rows;[...$("checklistBody").querySelectorAll("tr")].forEach((tr,i)=>{const row=r.rows[i]||{};tr.querySelector('[data-field="status"]').value=row.status||"";tr.querySelector('[data-field="finding"]').value=row.finding||"";tr.querySelector('[data-field="action"]').value=row.action||"";paintStatus(tr,row.status||"");});updateStats();showMessage("Riwayat pemeriksaan dimuat.");window.scrollTo({top:0,behavior:"smooth"});}
+$("position").addEventListener("change",()=>renderChecklist(false));
+$("filter").addEventListener("change",applyFilter);
+$("resetStatus").addEventListener("click",()=>{currentRows=currentRows.map(r=>({...r,status:""}));[...$("checklistBody").querySelectorAll("tr")].forEach(tr=>{tr.querySelector("select").value="";paintStatus(tr,"");});updateStats();});
+$("saveBtn").addEventListener("click",saveRecord);
+$("excelBtn").addEventListener("click",exportExcel);
+$("csvBtn").addEventListener("click",exportCSV);
+$("printBtn").addEventListener("click",()=>window.print());
+$("historyBtn").addEventListener("click",showHistory);
+$("clearHistoryBtn").addEventListener("click",()=>{if(confirm("Hapus seluruh riwayat checklist yang tersimpan di browser ini? Tindakan ini tidak dapat dibatalkan.")){localStorage.removeItem(STORAGE_KEY);$("history").style.display="none";showMessage("Riwayat lokal dihapus.");}});
+makeOptions();renderChecklist(false);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</body>
+</html>
